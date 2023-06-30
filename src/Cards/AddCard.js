@@ -11,17 +11,17 @@ export default function AddCard() {
 
 
   useEffect(() => {
-    const abortCon = new AbortController();
+    const abortController = new AbortController();
     async function getDeck() {
       try {
         if (deckId) {
-          const gotDeck = await readDeck(deckId, abortCon.signal);
+          const gotDeck = await readDeck(deckId, abortController.signal);
           setCurrentDeck({ ...gotDeck });
         }
       } catch (err) {throw err}
     }
     getDeck();
-    return () => abortCon.abort();
+    return () => abortController.abort();
   }, [deckId]);
 
 
